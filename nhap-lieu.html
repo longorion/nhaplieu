@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhap Lieu By Long Orion DEV Beta V11</title>
+    <link rel="SHORTCUT ICON" href="./pics/logo.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            width: 90%;
+            min-width: 500px;
+            margin: auto;
+            /* background-color: #343a40;
+            color: #ccc; */
+        }
+        .body-darkmode{
+            background-color: #343a40;
+        }
+        .darkmode{
+            background-color: #343a40;
+            color: #ccc;
+        }
+        .nav-bg{
+            background-color: #206ab9 !important;
+        }
+        input{
+            width: 300px;
+            /* min-width: 300px; */
+        }
+        table tr td p{
+            width: 180px;
+        }
+        .radio-button input{
+            width: 30px;
+        }
+        
+        .bottom{
+            background-color: #343a40;
+            padding: 10px;
+            border-top: 0px solid #5f3f0f;
+            user-select: none;
+            text-align: center;
+            
+        }
+        .bottom p, span{
+            color: #f2f2f2;
+        }
+        .menu-top{
+            user-select: none;
+        }
+        
+        .nhap-lieu-0{
+            background-color: #ffe4c4;
+            padding: 10px;
+            user-select: none;
+            display: none;
+        }
+        .nhap-lieu-1{
+            background-color: #ffc986;
+            padding: 10px;
+            user-select: none;
+            display: none;
+        }
+        .nhap-lieu-2{
+            /* background-color: #ffc986; */
+            padding: 10px;
+            user-select: none;
+            display: none;
+        }
+        .phan-dem{
+            /* width: 100%; */
+            height: 100px;
+            background-color: #ffc986;
+            padding: 0 10px;
+            user-select: none;
+            display: block;
+            
+            
+        }
+        .output{
+            display: none;
+        }
+        
+        
+        
+    </style>
+</head>
+<body class="">
+
+    
+    <div class="menu-top">
+        <!-- Menu bootstrap -->
+        <nav id="nav-top" class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">LONG ORION</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active" id='menu-0'>
+                    <a class="nav-link" href="#">Danh sách Cty VPCT</a>
+                </li>
+                <li class="nav-item" id='menu-1'>
+                    <a class="nav-link" href="#">Danh sách Tòa nhà</a>
+                </li>
+                <li class="nav-item" id='menu-2'>
+                    <a class="nav-link" href="#">Dịch vụ miễn phí</a>
+                </li>
+
+                
+                <!-- <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="" onclick="func_Reload()">ReLoad</a>
+                </li>
+                
+                <li>
+                    <!-- đọc file text từ JS -->
+                    <input class="nav-link btn" type="file" name="inputfile" id="inputfile">
+                    
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <button id="darkmode" class="btn btn-outline-success my-2 my-sm-0" style="margin-right: 10px;">Light / Dark</button>
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            </div>
+        </nav> 
+    </div> 
+    <!-- Nhap lieu thong tin cho danh sach toa nha (menu-0) -->
+    <div id="nhap-lieu-0" class="nhap-lieu-0">
+        <strong>Nhập liệu - Văn phòng cho thuê theo quận</strong>
+        <table>
+            <tbody>
+                <tr>
+                    <td><p>Link tòa nhà: </p></td>
+                    <td><input id="link-toa-nha" type="text"><label id="lbl-link-toa-nha" for="link-toa-nha">&ensp;*</label></td>
+                    
+                </tr>
+                <tr>
+                    <td><p>Tên tòa nhà: </p></td>
+                    <td><input id="ten-toa-nha" type="text"><label id="lbl-ten-toa-nha" for="ten-toa-nha">&ensp;*</label></td>
+                    
+                </tr>
+                <tr>
+                    <td><p>Địa chỉ tòa nhà:</p></td>
+                    <td><input id="dia-chi-toa-nha" type="text"><label id="lbl-dia-chi-toa-nha" for="dia-chi-toa-nha">&ensp;*</label></td>
+                    
+                </tr>
+                <tr>
+                    <td><p>Link Quận:</p></td>
+                    <td><input id="link-quan" type="text"><label id="lbl-link-quan" for="link-quan">&ensp;*</label></td>
+                    
+                </tr>
+                <tr>
+                    <td>Quận</td>
+                    <td><input id="quan-huyen" type="text"><label id="lbl-quan-huyen" for="quan-huyen">&ensp;*</label></td>
+                    
+                </tr>
+                <tr>
+                    <td>Quận</td>
+                    <td>
+                        <div class="radio-button">
+                            <input id="radio-button-bt" name="quan" type="radio" value="Bình Thạnh"/><label for="radio-button-bt">Bình Thạnh</label>
+                            <input id="radio-button-pn" name="quan" type="radio" value="Phú Nhuận"/><label for="radio-button-pn">Phú Nhuận</label>
+                            <input id="radio-button-tb" name="quan" type="radio" value="Tân Bình"/><label for="radio-button-tb">Tân Bình</label>
+                            <input id="radio-button-khac" name="quan" type="radio" value="" checked="true"/><label for="radio-button-khac">Khác</label>
+                        </div>
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td>.</td>
+                    <td>
+                        <div class="radio-button">
+                            <input id="radio-button-q1" name="quan" type="radio" value="1"/><label for="radio-button-q1">Quận 1</label>
+                            <input id="radio-button-q3" name="quan" type="radio" value="3"/><label for="radio-button-q3">Quận 3</label>
+                            <input id="radio-button-q4" name="quan" type="radio" value="4"/><label for="radio-button-q4">Quận 4</label>
+                            <input id="radio-button-q7" name="quan" type="radio" value="7"/><label for="radio-button-q7">Quận 7</label>
+                        </div>
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td>Option</td>
+                    <td>
+                        <div class="checkboxDichVu">
+                            <input name="cboxDichVuFree" id="cboxDichVuFree" style="width: 25px;" type="checkbox" aria-label="Checkbox" title="Dịch vụ Free" checked><label for="Checkbox">Dịch vụ Free</label>
+                            <input name="cboxMorong" id="cboxMorong" style="width: 25px;" type="checkbox" aria-label="Checkbox" title="Mở rộng" checked><label for="Checkbox">Thêm Địa chỉ, link, ...</label>
+                        </div>
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td><p>.</p></td>
+                    <td>
+                        <button class="btn btn-primary" onclick="func_Press()">Press</button>
+                        <button class="btn btn-secondary" onclick="func_Reload()">Reload</button>
+                        <button class="btn btn-info" onclick="func_Demo(0)">Demo 1</button>
+                        <button class="btn btn-info" onclick="func_Demo(1)">Demo 2</button>
+                        <button class="btn btn-warning" onclick="func_Next()">Next</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Phone</td>
+                    <td id="phone" style="user-select: all;">02862718379</td>
+                </tr>
+                <tr>
+                    <td>Link Quận: </td>
+                    <td style="user-select: all;"><label id="lbl-link-quan-2">ABC123</label></td>
+                </tr>
+                <tr>
+                    <td>CTVP</td>
+                    <td id="link-chothuevanphong" style="user-select: all;">../cho-thue-van-phong.html</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- Nhap lieu danh sach cong ty dang lam viec trong toa nha -->
+    <div id="nhap-lieu-1" class="nhap-lieu-1">
+        <strong>Nhập liệu - Danh sách công ty đang làm việc trong tòa nhà</strong>
+        <table>
+            <tbody>
+                <tr>
+                    <td><p>Link danh sách tòa nhà: </p></td>
+                    <td><input id="link-danh-sach-toa-nha" type="text"><label id="lbl-link-danh-sach-toa-nha" for="link-danh-sach-toa-nha">&ensp;*</label></td>
+                </tr>
+                <tr>
+                    <td>.</td>
+                    <td>
+                        <button class="btn btn-primary" onclick="fun_btnPress_Lay_link_ds_cty_dang_lam_viec()">Press</button>
+                        <button class="btn btn-secondary" onclick="fun_Clear()">Clear</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="phan-dem" class="phan-dem">
+        <h2>LONG ORION DEV</h2>
+        <div class="input-group mb-3">
+            <input name="q" id="inputSearch" type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button id="btnSearch" class="btn btn-outline-secondary" type="button">Search Google</button>
+            </div>
+        </div>
+
+    </div>
+    <!-- Show dữ liệu -->
+    <div>
+        <div id="show-info" class="">
+            <!-- Show dữ liệu info-->
+        </div>
+        <!-- <button id="btn_Copy_Info" class="btn btn-primary" style="width: 100%; display: none;" onclick="func_Copy_info()">Copy</button> -->
+        <button id="btn_Copy_Info" class="btn btn-primary" style="width: 100%; display: none;" onclick="func_Copy_info()">Copy</button>
+        <div id="show" class="">
+            <!-- Show dữ liệu -->
+        </div>
+        <div id="nhap-lieu-2" class="nhap-lieu-2">
+            <strong>Danh sách tòa nhà: </strong>
+            <div id="showtb">
+                <!-- Show Table Danh sách tòa nhà đã làm trong phiên -->
+            </div>
+        </div>
+        <div id="showDichVuMienPhi" class="">
+            <!-- Show dữ liệu -->
+        </div>
+        <!-- Xuat noi dung tu file text -->
+        <div id="output" class="output"></div>
+        
+    </div>
+    
+
+    <div id="nav-bottom" class="bottom">
+        <span id="show-hit">Total Actions</span>
+        <span id="show-hit-session"> - Session Actions: 0</span>
+        <span id="ngay-hien-tai"></span>
+    </div>
+
+    <div class="demo" style="display: none;">
+        <!-- Show Demo -->
+    </div>
+
+    <p style="width: 100%; height: 10px; background-color: #a52a2a;"></p>
+
+    <!-- JS bootstrap 4.0 -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- JS by Long Orion -->
+    <script src="main.js"></script>
+</body>  
+</html>
+
+
+
+
+
+
+
+
+
+
